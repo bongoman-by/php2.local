@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/autoload.php';
 
-$db = new App\Db();
-$res = $db->query('SELECT * FROM foo');
+use App\Models\User;
 
+var_dump(User::findAll());
 
 
