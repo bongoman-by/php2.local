@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Db {
+class Db extends Singleton{
 
     protected $dbh;
     private $DB_host = "localhost";
@@ -16,17 +16,23 @@ class Db {
         $this->dbh = new \PDO($this->DB_driver . ':host=' . $this->DB_host . ';dbname=' . $this->DB_database, $this->DB_user_name, $this->DB_user_password);
     }
 
-    public function execute($sql) {
+    public function execute($sql, array $input_parameters = null) {
         
         $sth = $this->dbh->prepare($sql);
         $res = $sth->execute();
         return $res;
     }
     
-    public function query($sql, $class) {
+    public function query($sql, $class, array $input_parameters = null) {
         
         $sth = $this->dbh->prepare($sql);
-        $res = $sth->execute();
+        if (null !== $input_parameters) {
+            $res = $sth->execute($input_parameters);
+
+        } else {
+            $res = $sth->execute();
+        }
+        
         if (FALSE !== $res) {
             return $sth->fetchAll(\PDO::FETCH_CLASS, $class); 
         }
