@@ -17,10 +17,14 @@ abstract class Model {
     
     public static function findbyField(array $input_parameters = null) {
         $db = Db::instance();
-        return $db->query(
-                        'SELECT * FROM ' . static::TABLE . ' WHERE ' . static::FIELD . ' ' . static::SIGN . ' ?', static::class, $input_parameters)[0];
+        $result = $db->query(
+                'SELECT * FROM ' . static::TABLE . ' WHERE ' . static::FIELD . ' ' . static::SIGN . ' ?', static::class, $input_parameters);
+        if (null == $result) {
+            return $result;
+        }
+        return $result[0];
     }
-    
+
     public static function findLastLines($limit) {
         $db = Db::instance();
         return $db->query(
@@ -59,4 +63,41 @@ VALUES
         $db->execute($sql, $values);
     }
     
-  }
+    public function update($id)
+    {
+        if ($this->isNew()) {
+            return;
+        }
+
+        $values = [];
+        foreach ($this as $k => $v) {
+            if ('id' == $k) {
+                continue;
+            }
+
+            $values[] = $k . ' = ' . "'" . $v . "'";
+        }
+
+        $sql = 'UPDATE ' . static::TABLE . 
+                ' SET ' . implode(', ', $values) . 
+                ' WHERE id = ' . $id;
+
+        $db = Db::instance();
+        $db->execute($sql);
+    }
+    
+    public function delete($id)
+    {
+        if ($this->isNew()) {
+            return;
+        }
+
+        
+        $sql = 'DELETE FROM ' . static::TABLE .
+                ' WHERE id = ' . $id;
+
+        $db = Db::instance();
+        $db->execute($sql);
+    }
+
+}

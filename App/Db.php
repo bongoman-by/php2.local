@@ -2,20 +2,19 @@
 
 namespace App;
 
+use App\Config;
+
 class Db {
     
     use Singleton;
 
     protected $dbh;
-    private $DB_host = "localhost";
-    private $DB_user_name = "root";
-    private $DB_user_password = "admin";
-    private $DB_driver = "mysql";
-    private $DB_database = "php2local";
-
+        
     protected function __construct() {
+        
+        $dbconfig = Config::instance()->data;
 
-        $this->dbh = new \PDO($this->DB_driver . ':host=' . $this->DB_host . ';dbname=' . $this->DB_database, $this->DB_user_name, $this->DB_user_password);
+        $this->dbh = new \PDO($dbconfig['DB_driver'] . ':host=' . $dbconfig['DB_host'] . ';dbname=' . $dbconfig['DB_database'], $dbconfig['DB_user_name'], $dbconfig['DB_user_password']);
     }
 
     public function execute($sql, array $input_parameters = null) {

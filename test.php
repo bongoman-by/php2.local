@@ -17,8 +17,10 @@ function sendEmail(\App\Models\HasEmail $user, string $message = '') {
 
 //sendEmail($currentUser);
 
-$user = new User();
-$user->name = 'Vasya';
-$user->email = 'v@pupkin.ru';
-$user->insert();
+$user = User::findbyField(array('5'));
+if (!null == $user) {
+
+    $user->delete($user ->id);
+}
+
 

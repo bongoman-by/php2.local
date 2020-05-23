@@ -5,9 +5,9 @@ require_once __DIR__ . '/autoload.php';
 use App\Models\User;
 use App\Models\Foo;
 use App\Models\News;
+use App\Config;
 
-$foo = Foo::findbyField(array('Pablo'));
-$currentUser = User::findbyField(array('2'));
+$config = Config::instance();
 
 $newsList = News::findLastLines('3');
 include 'App/view.php';
