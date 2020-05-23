@@ -2,7 +2,9 @@
 
 namespace App;
 
-class Db extends Singleton{
+class Db {
+    
+    use Singleton;
 
     protected $dbh;
     private $DB_host = "localhost";
@@ -11,7 +13,7 @@ class Db extends Singleton{
     private $DB_driver = "mysql";
     private $DB_database = "php2local";
 
-    public function __construct() {
+    protected function __construct() {
 
         $this->dbh = new \PDO($this->DB_driver . ':host=' . $this->DB_host . ';dbname=' . $this->DB_database, $this->DB_user_name, $this->DB_user_password);
     }
