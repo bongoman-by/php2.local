@@ -9,5 +9,7 @@ use App\Config;
 
 $config = Config::instance();
 
-$newsList = News::findLastLines('3');
-include 'App/view.php';
+//$newsList = News::findLastLines('3');
+//include 'App/view.php';
+
+include 'App/templates/index.php';
