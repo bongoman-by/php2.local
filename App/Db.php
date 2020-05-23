@@ -21,7 +21,7 @@ class Db {
     public function execute($sql, array $input_parameters = null) {
         
         $sth = $this->dbh->prepare($sql);
-        $res = $sth->execute();
+        $res = $sth->execute($input_parameters);
         return $res;
     }
     

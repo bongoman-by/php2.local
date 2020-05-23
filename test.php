@@ -15,8 +15,10 @@ function sendEmail(\App\Models\HasEmail $user, string $message = '') {
     echo 'Почта уходит на ' . $user->email;
 }
 
-sendEmail($currentUser);
+//sendEmail($currentUser);
 
-$single = \App\Db::instance();
+$user = new User();
+$user->name = 'Vasya';
+$user->email = 'v@pupkin.ru';
+$user->insert();
 
-var_dump($single);
