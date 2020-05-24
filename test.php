@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Foo;
 use App\Singleton;
 
-
 $foo = Foo::findbyField(array('Pablo'));
 $currentUser = User::findbyField(array('2'));
 
@@ -22,5 +21,6 @@ if (!null == $user) {
 
     $user->delete($user ->id);
 }
+
 
 

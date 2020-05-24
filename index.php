@@ -10,6 +10,8 @@ use App\Config;
 $config = Config::instance();
 
 //$newsList = News::findLastLines('3');
-//include 'App/view.php';
-$users = User::findAll();
-include 'App/templates/index.php';
+//include 'App/viewNews.php';
+$view = new \App\View();
+$view->users = User::findAll(); 
+//$view->display(__DIR__  . '/App/templates/index.php');
+echo $view->render(__DIR__  . '/App/templates/index.php');

@@ -13,6 +13,12 @@ class User extends Model
 
     public $email;
     public $name;
+    
+    /**
+     * Метод возвращает адрес электронной почты
+     * @deprecated since version 2.0
+     * @return string Адрес электронной почты
+     */
 
     public function getEmail()
     {

@@ -13,7 +13,7 @@
     <body>
         <h1>Пользователи</h1>
 
-        <?php foreach ($users as $user) : ?>
+        <?php foreach ($this->users as $user) : ?>
 
             <div class="panel panel-default">
                 <div class="col-md-4">
