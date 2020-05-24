@@ -11,5 +11,5 @@ $config = Config::instance();
 
 //$newsList = News::findLastLines('3');
 //include 'App/view.php';
-
+$users = User::findAll();
 include 'App/templates/index.php';
