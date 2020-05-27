@@ -7,7 +7,7 @@ use App\Config;
 
 $config = Config::instance();
 
-$view = new \App\View();
-$view->users = User::findAll(); 
+$views = new \App\Views();
+$views->users = User::findAll(); 
 
-echo $view->render(__DIR__  . '/App/templates/index.php');
+echo $views->render(__DIR__  . '/App/templates/index.php');
