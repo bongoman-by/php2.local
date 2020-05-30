@@ -10,4 +10,13 @@ $config = Config::instance();
 $views = new \App\Views();
 $views->users = User::findAll(); 
 
-echo $views->render(__DIR__  . '/App/templates/index.php');
+try {
+  echo $views->display(__DIR__  . '/App/templates/index.php');
+  
+} catch (App\Exceptions\Core $exc) {
+    echo $exc->getMessage();
+}catch (App\Exceptions\Db $exc) {
+    echo $exc->getMessage();
+}
+
+

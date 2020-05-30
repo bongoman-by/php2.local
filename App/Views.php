@@ -22,6 +22,8 @@ implements \Countable
         ob_start();
         foreach ($this->data as $key => $value) {
             $$key = $value;
+            $ex = new Exceptions\Db("Exception Db", 2);
+            throw $ex;
         }
         include $template;
         $content = ob_get_contents();
@@ -31,6 +33,7 @@ implements \Countable
 
     public function display($template)
     {
+      
         echo $this->render($template);
     }
     
