@@ -1,12 +1,21 @@
 <?php
 
-define('MODELS',$_SERVER['DOCUMENT_ROOT'].'/App/models/');
 function my_autoloader($class) {
 
-    include_once __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
+    $filename = __DIR__ . '/' . str_replace('\\', '/', $class) . '.php';
+    if (file_exists($filename)) {
+        include_once $filename;
+    }
 }
 
 spl_autoload_register('my_autoloader');
 
+spl_autoload_register(function ($class) {
+
+    $filename = __DIR__ . '/' . str_replace(['\\', 'App'], ['/', 'lib'], $class) . '.php';
+    if (file_exists($filename)) {
+        include_once $filename;
+    }
+});
 
 
